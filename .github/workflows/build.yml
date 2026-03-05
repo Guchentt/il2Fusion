@@ -19,10 +19,16 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-          cache: 'gradle'
+          cache: gradle
 
       - name: Make gradlew executable
         run: chmod +x gradlew
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug
+
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: il2Fusion-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
